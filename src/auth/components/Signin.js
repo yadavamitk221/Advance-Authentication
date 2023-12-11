@@ -1,17 +1,19 @@
 // Library imports
 import React, { useState } from "react";
 import { EyeInvisibleOutlined, EyeOutlined } from "@ant-design/icons";
-import { Link } from "react-router-dom";
+import { Link, Navigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { useFormik } from "formik";
 
+
 // File Imports
-import { clearAuthError, loginUserAsync, selectAuthError } from "../authSlice";
+import { clearAuthError, loginUserAsync, selectAuthError, selectLoggedInUser } from "../authSlice";
 import { signinSchema } from "./schemas/authSchema";
 
 function Signin() {
   // Redux state and dispatch
   const authError = useSelector(selectAuthError);
+  const user = useSelector(selectLoggedInUser);
   const dispatch = useDispatch();
 
   // Local state for password visibility toggle
@@ -41,6 +43,7 @@ function Signin() {
 
   return (
     <div>
+    {user && <Navigate to={"/"} replace={true}></Navigate>}
       <div className="flex min-h-full flex-1 flex-col justify-center px-6 py-12 lg:px-8">
         <div className="sm:mx-auto sm:w-full sm:max-w-sm">
           <img

@@ -1,13 +1,19 @@
 import React from "react";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
-import SigninPage from "./pages/authPages/SigninPage";
-import SignupPage from "./pages/authPages/SignupPage";
-import ForgerPasswordPage from "./pages/authPages/ResetPasswordPage";
+import SigninPage from "./pages/auth/SigninPage";
+import SignupPage from "./pages/auth/SignupPage";
+import ForgerPasswordPage from "./pages/auth/ResetPasswordPage";
+import HomePage from "./pages/Home/HomePage";
+import Protected from "./auth/components/Protected";
 
 const router = createBrowserRouter([
   {
     path: "/",
-    element: <SigninPage />,
+    element: (
+      <Protected>
+        <HomePage />
+      </Protected>
+    ),
   },
   {
     path: "/login",

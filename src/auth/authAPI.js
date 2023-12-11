@@ -18,7 +18,7 @@ export function loginUser(loginInfo) {
   return new Promise(async (resolve, reject) => {
     try {
       console.log("loginInfo", loginInfo);
-      const response = await axiosInstance.post("/auth/login", loginInfo);
+      const response = await axiosInstance.post("/auth/signin", loginInfo);
 
       localStorage.setItem("token", response.data.token);
       resolve({ data: response.data });
